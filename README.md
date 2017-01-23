@@ -14,13 +14,10 @@ EX: curl localhost:8080 | JSON_pp
 
  //explains the api
 
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100   191  100   191    0     0  17471      0 --:--:-- --:--:-- --:--:-- 19100
 {
+   "message" : "Greetings from NikeDeck!"
    "/decks" : "GET a list of the current decks persisted in the service.",
    "/decks/[deckName]" : "PUT = create, POST = shuffle, GET = display, DELETE = delete.",
-   "message" : "Greetings from NikeDeck!"
 }
 
 #ISSUES:
