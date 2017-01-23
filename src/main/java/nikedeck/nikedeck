@@ -1,0 +1,16 @@
+HTTP/1.1 301 Moved Permanently
+Server: nginx
+Date: Sat, 21 Jan 2017 22:04:52 GMT
+Content-Type: text/html
+Transfer-Encoding: chunked
+Connection: close
+Location: http://localhost
+Expires: Sat, 21 Jan 2017 22:04:51 GMT
+Cache-Control: no-cache
+
+HTTP/1.1 400 Bad Request
+Date: Sat, 21 Jan 2017 22:04:56 GMT
+X-Application-Context: application
+Content-Type: application/json;charset=UTF-8
+Transfer-Encoding: chunked
+
