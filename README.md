@@ -74,9 +74,9 @@ If you have Issues with this project, please create an Issue on GitHub and I wil
 
 Shuffling only occurs for 1 iteration.  As you can visualize the doHandShuffle creates some interesting scenarios.  To shuffle more than once, just issue the command again, you know, like a dealer might do in front of you.  If you want a parameter to specify number of iterations, please create an Issue on GitHub so I know you are alive and kicking and waiting for this feature.
 
-Refactor to support Strategy Pattern with Generics
+Refactor to support Strategy Pattern with Generics.
 
-Stub out fetch, delete for alternative mechanism, like save.
+Stub out fetch, delete for alternative mechanism, like save. DONE
 
 DeckController.java uses unchecked or unsafe operations.
 
@@ -98,6 +98,7 @@ Make this readme pretty.
 
 Performance: Consider ArrayList or other collection classes that may perform better without threading issues than Vector (my old trusty dog).
 
+Performance:  Convert to StringBuffer or the latest fad in string contatenation. 
 Consider project lifecycle costs/benefit of including 3rd-party libraries for JSON.
 
 Consider consolidating JSON formatting code.
