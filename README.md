@@ -74,6 +74,10 @@ Shuffling only occurs for 1 iteration.  As you can visualize the doHandShuffle c
 
 Refactor to support Strategy Pattern with Generics
 
+Stub out fetch, delete for alternative mechanism, like save.
+
+DeckController.java uses unchecked or unsafe operations.
+
 Resolve Spring properties magic not working.  Using System properties for now.
 
 Serialize/persist decks, looking at Protobuf.
@@ -98,44 +102,44 @@ Consider consolidating JSON formatting code.
 
 # Specification:
 
-Please create a RESTful microservice that implements a card shuffling algorithm, as defined below.  
+Please create a RESTful microservice that implements a card shuffling algorithm, as defined below.  DONE
 
-We’d like to see evidence of test-driven development with unit tests.  
+We’d like to see evidence of test-driven development with unit tests. IN PROCESSand as usual the tests are coming after the initial product, so I didn't design the tests first then create the product.  But this will give me some time to think about how one might go about this and push back and/or create the specifications in the test before I proceed with the solution programming. Need to study Cucumber possibly. For now using Spring and junit. 
 
-We’d prefer you use Gradle for the build, and Jetty to host, but these aren't requirements.  
+We’d prefer you use Gradle for the build, and Jetty to host, but these aren't requirements.  DONE
 
-Use best practices of interfaces and generics for abstraction, preferably implementing a strategy pattern for deploy-time dependency injection of a shuffling algorithm.  
+Use best practices of interfaces and generics for abstraction, preferably implementing a strategy pattern for deploy-time dependency injection of a shuffling algorithm. IN PROCESS 
 
-Please document your decision making process with comments in the code, especially with regards to any scope reduction.
+Please document your decision making process with comments in the code, especially with regards to any scope reduction. DONE See above and below.
  
 Requirements:
 
-·         Create a microservice that stores and shuffles card decks.
+·         Create a microservice that stores and shuffles card decks. DONE
 
-·         A card may be represented as a simple string such as “5-heart”, or “K-spade”.
+·         A card may be represented as a simple string such as “5-heart”, or “K-spade”. DONE
 
-·         A deck is an ordered list of 52 standard playing cards.
+·         A deck is an ordered list of 52 standard playing cards. DONE
 
-·         Expose a RESTful interface that allows a user to:
+·         Expose a RESTful interface that allows a user to: DONE
 
-·         PUT an idempotent request for the creation of a new named deck.  New decks are created in some initial sorted order.
+·         PUT an idempotent request for the creation of a new named deck.  New decks are created in some initial sorted order. DONE For convenience I include the ACE as a face card so initial sort is a bit off, not fully ranked.
 
-·         POST a request to shuffle an existing named deck.
+·         POST a request to shuffle an existing named deck. DONE
 
-·         GET a list of the current decks persisted in the service.
+·         GET a list of the current decks persisted in the service. DONE
 
-·         GET a named deck in its current sorted/shuffled order.
+·         GET a named deck in its current sorted/shuffled order. DONE
 
-·         DELETE a named deck.
+·         DELETE a named deck. DONE
 
-·         Design your own data and API structure(s) for the deck.
+·         Design your own data and API structure(s) for the deck. DONE
 
-·         Persist the decks in-memory only, but stub the persistence layer such that it can be later upgraded to a durable datastore.
+·         Persist the decks in-memory only, but stub the persistence layer such that it can be later upgraded to a durable datastore. DONE for save, need for fetch, delete, display.
 
-·         Implement a simple shuffling algorithm that simply randomizes the deck in-place.
+·         Implement a simple shuffling algorithm that simply randomizes the deck in-place. DONE via Collections.
 
-·         Implement a more complex algorithm that simulates hand-shuffling, i.e. splitting the deck in half and interleaving the two halves, repeating the process multiple times.
+·         Implement a more complex algorithm that simulates hand-shuffling, i.e. splitting the deck in half and interleaving the two halves, repeating the process multiple times. DONE single iteration, for more just repeat the commmand.
 
-·         Allow switching the algorithms at deploy-time only via configuration.
+·         Allow switching the algorithms at deploy-time only via configuration. DONE via -D command line, need to resolve Spring property magic.
 
-          Provide the source code and instructions for building/running/using the microservice.
+·         Provide the source code and instructions for building/running/using the microservice. DONE

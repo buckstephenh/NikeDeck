@@ -87,7 +87,12 @@ private HashMap<String,Vector<String>> decks = new HashMap<String,Vector<String>
         for (String deck : decksString) {
             decksDisplay += "\"" + deck + "\",";
         }
-        decksDisplay = decksDisplay.substring(0,decksDisplay.length()-1);
+        if (decksString.length == 0){
+            decksDisplay += "\"empty\"";
+        } else {
+         decksDisplay = decksDisplay.substring(0,decksDisplay.length()-1);
+           
+        }
         decksDisplay += "]}";
 
        return decksDisplay;
@@ -97,10 +102,26 @@ private HashMap<String,Vector<String>> decks = new HashMap<String,Vector<String>
     public @ResponseBody String deleteDeck(@PathVariable("deckName") String deckName) {
         Vector<String> response = decks.remove(deckName);     
         if(response != null){
-           return deckName += " deleted";
+           System.out.println(deckName + " deleted");
         } else {
-           return "{\"result\":\"not found\"}";
+           System.out.println(deckName + " not found");
         }
+        
+        String decksDisplay = new String();
+        decksDisplay += "{\"decks\":[";
+        String[] decksString = decks.keySet().toArray(new String[decks.size()]);
+        for (String deck : decksString) {
+            decksDisplay += "\"" + deck + "\",";
+        }
+        if (decksString.length == 0){
+            decksDisplay += "\"empty\"";
+        } else {
+         decksDisplay = decksDisplay.substring(0,decksDisplay.length()-1);
+           
+        }
+        decksDisplay += "]}";
+
+       return decksDisplay;
     }
 
     public Vector genDeck() {
