@@ -20,10 +20,33 @@ EX: curl localhost:8080 | JSON_pp
    "/decks/[deckName]" : "PUT = create, POST = shuffle, GET = display, DELETE = delete.",
 }
 
+# Examples
+
+Create a couple of decks:
+
+curl -X PUT localhost:8080/decks/deck1 | JSON_pp
+curl -X PUT localhost:8080/decks/deck2 | JSON_pp
+
+List the decks:
+
+curl -X GET localhost:8080/decks | JSON_pp
+
+Shuffle the decks:
+
+curl -X POST localhost:8080/decks/deck1 | JSON_pp
+curl -X POST localhost:8080/decks/deck2 | JSON_pp
+
+Delete the decks:
+
+curl -X DELETE localhost:8080/decks/deck1 | JSON_pp
+curl -X DELETE localhost:8080/decks/deck2 | JSON_pp
+
+
 #ISSUES:
 
 If you have Issues with this project, please create an Issue on GitHub and I will work to resolve.
 
+Shuffling only occurs for 1 iteration.  As you can visualize the doHandShuffle creates some interesting scenarios.  To shuffle more than once, just issue the command again, you know, like a dealer might do in front of you.  If you want a parameter to specify number of iterations, please create an Issue on GitHub so I know you are alive and kicking and waiting for this feature.
 Resolve Spring properties magic not working.  Using System properties for now.
 Serialize/persist decks, looking at Protobuf.
 Tests need to check bounds and ensure solution is hardened.
@@ -33,6 +56,8 @@ Duplicate deck handling.  For now duplicate name replaces existing deck.
 NullPointerExceptions when calling some functions before deck exists.
 Make this readme pretty.
 Performance: Consider ArrayList or other collection classes that may perform better without threading issues than Vector (my old trusty dog).
+Consider project lifecycle costs/benefit of including 3rd-party libraries for JSON.
+Consider consolidating JSON formatting code.
 
 #SPECIFICATION:
 
