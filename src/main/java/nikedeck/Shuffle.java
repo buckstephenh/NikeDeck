@@ -5,7 +5,7 @@ import java.util.Collections;
 
 public class Shuffle {
 
-    private Vector<String> doRandom(Vector<String> list) {
+    public Vector<String> doRandom(Vector<String> list) {
     
         //for thread safety should we be making a copy before shuffling?
         Collections.shuffle(list);
@@ -13,7 +13,7 @@ public class Shuffle {
 
     }
 
-    private Vector<String> doHandShuffle(Vector<String> list) {
+    public Vector<String> doHandShuffle(Vector<String> list) {
     
        //split the list in half and interleave
        Vector<String> newList = new Vector<String>(list.size());

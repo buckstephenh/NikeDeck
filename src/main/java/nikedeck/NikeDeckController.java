@@ -128,16 +128,34 @@ private HashMap<String,Vector<String>> decks = new HashMap<String,Vector<String>
     public Vector<String> shuffleDeck(Vector<String> deck) {
 
         //Using reflection, load and use class method declared in application.properties, or in override
-        System.out.println("configService.shuffleClass:"+ configService.shuffleClass);
-        System.out.println("configService.shuffleMethod:"+ configService.shuffleMethod); 
+        System.out.println("configService.shuffleClass:" + configService.shuffleClass);
+        System.out.println("configService.shuffleMethod:" + configService.shuffleMethod); 
+        System.out.println("-Dshuffle.class:" + System.getProperty("shuffle.class"));
+        System.out.println("-Dshuffle.method:" + System.getProperty("shuffle.method"));
 	Vector<String> shuffledDeck = deck;
 
-        try{
-            Class shuffleClassDef  = Class.forName(configService.shuffleClass);
+        String shuffleClass = System.getProperty("shuffle.class");
+        String shuffleMethod = System.getProperty("shuffle.method");
+
+        if (shuffleClass == null || shuffleClass.equals("") || shuffleMethod == null || shuffleMethod.equals("")){
+		shuffleClass = "nikedeck.Shuffle";
+                shuffleMethod = "nikedeck.doRandom";
+        }
+
+        System.out.println("shuffleClass:" + shuffleClass);
+        System.out.println("shuffleMethod:" + shuffleMethod);
+
+         try{
+            Class shuffleClassDef  = Class.forName(shuffleClass);
             Object shuffleClassInstance = shuffleClassDef.newInstance();
+            
+            Method[] methods = shuffleClassDef.getMethods();
+            for (Method method : methods) {
+                System.out.println(method);
+            }
             Class[] cArg = new Class[1];
             cArg[0] = Vector.class;
-            Method shuffleMethodInstance = shuffleClassDef.getMethod(configService.shuffleMethod, cArg);
+            Method shuffleMethodInstance = shuffleClassDef.getMethod(shuffleMethod, cArg);
     
             shuffledDeck = (Vector) shuffleMethodInstance.invoke(shuffleClassInstance, deck);
         } catch (ClassNotFoundException e) {

@@ -8,7 +8,7 @@ gradle build && java -Dshuffle.class=nikedeck.Shuffle -Dshuffle.method=doRandom 
 
 Split deck interleave aka Hand Shuffle:
 
-gradle build && java -Dshuffle.class=hello.Shuffle -Dshuffle.method=doHandShuffle -jar build/libs/gs-spring-boot-0.1.0.jar
+gradle build && java -Dshuffle.class=nikedeck.Shuffle -Dshuffle.method=doHandShuffle -jar build/libs/gs-spring-boot-0.1.0.jar
 
 EX: curl localhost:8080 | JSON_pp 
 
@@ -31,6 +31,8 @@ Tests needed for each line of the specification to support automated end-user ac
 Re-write specification in Cucumber to facilitate automated end-user acceptance.
 Duplicate deck handling.  For now duplicate name replaces existing deck.
 NullPointerExceptions when calling some functions before deck exists.
+Make this readme pretty.
+Performance: Consider ArrayList or other collection classes that may perform better without threading issues than Vector (my old trusty dog).
 
 #SPECIFICATION:
 
