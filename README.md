@@ -1,5 +1,7 @@
 # NikeDeck 
 
+Written by stephenherronbuck@gmail.com
+
 # What the heck?
 
 It's a 52 Card Standard Deck Shuffler, wrapped in a RESTful microservice using Gradle, Spring Boot, Jetty.
@@ -100,6 +102,8 @@ Consider project lifecycle costs/benefit of including 3rd-party libraries for JS
 
 Consider consolidating JSON formatting code.
 
+Developer-mode auto-reloading of service instance upon source edit doesn't seem to be working despite gradle config.
+
 # Specification:
 
 Please create a RESTful microservice that implements a card shuffling algorithm, as defined below.  DONE
@@ -143,3 +147,11 @@ Requirements:
 ·         Allow switching the algorithms at deploy-time only via configuration. DONE via -D command line, need to resolve Spring property magic.
 
 ·         Provide the source code and instructions for building/running/using the microservice. DONE
+
+# Developer Notes
+
+This was written entirely in vi for practice, using one terminal window for vi and another window for running the code.  Many launch failures using this method were caused by silly syntax issues normally cured by an IDE editor.  Historically I would wire up a full IDE which would help me code faster and better with lookup and suggestions and tasks but IDEs take time and lately there has been an industry push toward minimalism using web-based editors, simple editors like vi, toolchain integration and discrete independent and scalable services like this microservice.  
+
+Is monolithic architecture really dead?  If crossing network and process boundaries creates too much latency, then Mono Y Mono. 
+
+
