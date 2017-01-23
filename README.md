@@ -15,9 +15,13 @@ EX: curl localhost:8080 | JSON_pp
  //explains the api
 
 {
+
    "message" : "Greetings from NikeDeck!"
+
    "/decks" : "GET a list of the current decks persisted in the service.",
-   "/decks/[deckName]" : "PUT = create, POST = shuffle, GET = display, DELETE = delete.",
+
+   "/decks/[deckName]" : "PUT = create, POST = shuffle, GET = display, DELETE = delete."
+
 }
 
 # Examples
