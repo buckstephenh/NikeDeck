@@ -1,6 +1,16 @@
 # NikeDeck
 
+Prequisites:
+
+JDK 1.8 or later
+
+Gradle 2.3+
+
 To run this project:
+
+git clone https://github.com/buckstephenh/NikeDeck
+
+cd NikeDeck
 
 Random Shuffling:
 
