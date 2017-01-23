@@ -1,15 +1,14 @@
+/** Author stephenherronbuck@gmail.com 
+ * NikeDeckController.java is the main router class for the RESTful implementation of NikeDeck,
+ * a card shuffling service.
+*/
+ 
 package nikedeck;
 
 import java.lang.reflect.*;
 import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.*;
-//import org.springframework.web.bind.annotation.RequestMapping;
-//import org.springframework.web.bind.annotation.ResponseBody;
-//import org.springframework.web.bind.annotation.RequestBody;
-//import org.springframework.web.bind.annotation.RequestMethod;
-//import org.springframework.web.bind.annotation.PathVariable;
-//import org.springframeowrk.web.bind.annotation.Value;
 import java.util.HashMap;
 import java.util.Vector;
 
@@ -17,11 +16,14 @@ import java.util.Vector;
 @RestController
 public class NikeDeckController {
 
+//ConfigService for custom properties Spring flavor
 @Autowired
 private ConfigService configService;
 
+//where the decks go in memory
 private HashMap<String,Vector<String>> decks = new HashMap<String,Vector<String>>();
 
+    //Root request with API instructions
     @RequestMapping("/")
     public String index() {
         String rest = "{\"message\":\"Greetings from NikeDeck!\"";
@@ -30,100 +32,55 @@ private HashMap<String,Vector<String>> decks = new HashMap<String,Vector<String>
         return rest;
     }
 
+    //Create a deck
     @RequestMapping(value = "/decks/{deckName}", method = RequestMethod.PUT)
     public @ResponseBody String createDeck(@PathVariable("deckName") String deckName) {
+
        Vector<String> deck = genDeck();
        saveDeck(deckName, deck);
-       String deckDisplay = new String();
-       deckDisplay += "{\"" + deckName + "\":[";
-       for (String card : deck){
-           deckDisplay += " \"" + card + "\",";
-       }       
-       deckDisplay = deckDisplay.substring(0,deckDisplay.length()-1);
-       deckDisplay += "]}";
-       return deckDisplay;
+ 
+       return fetchDeck(deckName);
 
     }
     
+    //Shuffle a deck
     @RequestMapping(value = "/decks/{deckName}", method = RequestMethod.POST)
     public @ResponseBody String shuffleDeck(@PathVariable("deckName") String deckName) {
         
         Vector<String> deck = (Vector<String>)decks.get(deckName);        
         deck = shuffleDeck(deck);
         saveDeck(deckName,deck);
-
-        String deckDisplay = new String();
-        deckDisplay += "{\"" + deckName + "\":[";
-        for (String card : deck){
-            deckDisplay += " \"" + card + "\",";
-        }       
-        deckDisplay = deckDisplay.substring(0,deckDisplay.length()-1);
-        deckDisplay += "]}";
-    
-        return deckDisplay;
+ 
+        return fetchDeck(deckName);
 
     }
 
+    //Get a deck aka find and display
     @RequestMapping(value = "/decks/{deckName}", method = RequestMethod.GET)
     public @ResponseBody String getDeck(@PathVariable("deckName") String deckName) {
-        Vector<String> deck = (Vector<String>)decks.get(deckName);
-        String deckDisplay = new String();
-        deckDisplay += "{\"" + deckName + "\":[";
-        for (String card : deck){
-            deckDisplay += " \"" + card + "\",";
-        }       
-        deckDisplay = deckDisplay.substring(0,deckDisplay.length()-1);
-        deckDisplay += "]}";
-    
-    return deckDisplay;
+        
+        return fetchDeck(deckName);
 
     }
 
+    //Get decks aka find and display all decks
     @RequestMapping(value = "/decks", method = RequestMethod.GET)
     public @ResponseBody String getDecks() {
-        String decksDisplay = new String();
-        decksDisplay += "{\"decks\":[";
-        String[] decksString = decks.keySet().toArray(new String[decks.size()]);
-        for (String deck : decksString) {
-            decksDisplay += "\"" + deck + "\",";
-        }
-        if (decksString.length == 0){
-            decksDisplay += "\"empty\"";
-        } else {
-         decksDisplay = decksDisplay.substring(0,decksDisplay.length()-1);
-           
-        }
-        decksDisplay += "]}";
-
-       return decksDisplay;
+        
+        return fetchDecks();
     }
 
+    //Delete a deck
     @RequestMapping(value = "/decks/{deckName}", method = RequestMethod.DELETE)
     public @ResponseBody String deleteDeck(@PathVariable("deckName") String deckName) {
-        Vector<String> response = decks.remove(deckName);     
-        if(response != null){
-           System.out.println(deckName + " deleted");
-        } else {
-           System.out.println(deckName + " not found");
-        }
         
-        String decksDisplay = new String();
-        decksDisplay += "{\"decks\":[";
-        String[] decksString = decks.keySet().toArray(new String[decks.size()]);
-        for (String deck : decksString) {
-            decksDisplay += "\"" + deck + "\",";
-        }
-        if (decksString.length == 0){
-            decksDisplay += "\"empty\"";
-        } else {
-         decksDisplay = decksDisplay.substring(0,decksDisplay.length()-1);
-           
-        }
-        decksDisplay += "]}";
-
-       return decksDisplay;
+        removeDeck(deckName);
+ 
+        return fetchDecks();
+        
     }
 
+    //Deck factory
     public Vector genDeck() {
         Vector<String> deck = new Vector(52);
         String[] suites = {"Hearts","Diamonds","Spades","Clubs"};
@@ -140,12 +97,71 @@ private HashMap<String,Vector<String>> decks = new HashMap<String,Vector<String>
     
     }
     
+    //Stub for persisting deck
     public void saveDeck(String deckName, Vector<String> deck) {
 
         decks.put(deckName,deck);
 
+        //put code here to save to db, must never fail or need to refactor to return a reason code  for failure.
     }
 
+    //Stub for fetching a deck
+    public String fetchDeck(String deckName){
+        
+        //put code here to fetch from db        
+
+       Vector<String> deck = decks.get(deckName);
+       String deckDisplay = new String();
+       deckDisplay += "{\"" + deckName + "\":[";
+       for (String card : deck){
+           deckDisplay += " \"" + card + "\",";
+       }       
+       deckDisplay = deckDisplay.substring(0,deckDisplay.length()-1);
+       deckDisplay += "]}";
+
+       return deckDisplay;
+
+    }
+
+    //Stub for deleting a deck
+    public void removeDeck(String deckName){
+
+       //put code here to delete from db
+
+        Vector<String> response = decks.remove(deckName);     
+        if(response != null){
+           System.out.println(deckName + " deleted");
+        } else {
+           System.out.println(deckName + " not found");
+        }
+      
+
+    }
+
+    //Stub for fetching and displaying deck list
+    public String fetchDecks() {
+     
+        //put db code here
+     
+        String decksDisplay = new String();
+        decksDisplay += "{\"decks\":[";
+        String[] decksString = decks.keySet().toArray(new String[decks.size()]);
+        for (String deck : decksString) {
+            decksDisplay += "\"" + deck + "\",";
+        }
+        if (decksString.length == 0){
+            decksDisplay += "\"empty\"";
+        } else {
+         decksDisplay = decksDisplay.substring(0,decksDisplay.length()-1);
+           
+        }
+        decksDisplay += "]}";
+
+       return decksDisplay;
+
+    }
+
+    //Shuffle a deck using specified class and method
     public Vector<String> shuffleDeck(Vector<String> deck) {
 
         //Using reflection, load and use class method declared in application.properties, or in override

@@ -1,3 +1,5 @@
+//Application.java comes straight out of the Spring Boot tutorial.
+
 package nikedeck;
 
 import java.util.Arrays;

@@ -1,3 +1,5 @@
+//Class to load string properties in ConfigServer.properties file into variables for use in the application.
+
 package nikedeck;
 
 import org.springframework.stereotype.Service;

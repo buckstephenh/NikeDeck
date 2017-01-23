@@ -1,3 +1,5 @@
+//Shuffle.java is for implementing various shuffle algorithms
+
 package nikedeck;
 
 import java.util.Vector;
