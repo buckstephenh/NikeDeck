@@ -78,6 +78,8 @@ Refactor to support Strategy Pattern with Generics.
 
 Stub out fetch, delete for alternative mechanism, like save. DONE
 
+Spruce up Java comments to produce quality javadocs.
+
 DeckController.java uses unchecked or unsafe operations.
 
 Resolve Spring properties magic not working.  Using System properties for now.
