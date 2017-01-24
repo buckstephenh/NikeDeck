@@ -88,7 +88,7 @@ Serialize/persist decks, looking at Protobuf.
 
 Tests need to check bounds and ensure solution is hardened.
 
-Tests needed for each line of the specification to support automated end-user acceptance.
+Tests needed for each line of the specification to support automated end-user acceptance. PARTIAL-Basic Functions DONE, record/compare output TODO
 
 Re-write specification in Cucumber to facilitate automated end-user acceptance.
 

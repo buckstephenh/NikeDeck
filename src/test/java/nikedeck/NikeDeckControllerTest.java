@@ -3,6 +3,7 @@ package nikedeck;
 import static org.hamcrest.Matchers.equalTo;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import  org.springframework.test.web.servlet.ResultActions;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,9 +25,14 @@ public class NikeDeckControllerTest {
 
     @Test
     public void getHello() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/").accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-               // .andExpect(content().string(equalTo("Greetings from Spring Boot!")))
+        ResultActions ra = mvc.perform(MockMvcRequestBuilders.get("/"));
+        //.accept(MediaType.APPLICATION_JSON));
+        ra.andExpect(status().isOk());
+       
+       //TODO:  Create a record mode to take the output and store it, then on regular play mode the prior output is compared during test.
+
+        System.out.println(ra.andReturn());
+       // .andExpect(content().string(equalTo("Greetings from Spring Boot!")))
 ;
 
     }
