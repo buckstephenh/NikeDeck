@@ -74,7 +74,7 @@ If you have Issues with this project, please create an Issue on GitHub and I wil
 
 Shuffling only occurs for 1 iteration.  As you can visualize the doHandShuffle creates some interesting scenarios.  To shuffle more than once, just issue the command again, you know, like a dealer might do in front of you.  If you want a parameter to specify number of iterations, please create an Issue on GitHub so I know you are alive and kicking and waiting for this feature.
 
-Refactor to support Strategy Pattern with Generics.
+Refactor to support Strategy Pattern with Generics.  PARTIAL
 
 Stub out fetch, delete for alternative mechanism, like save. DONE
 
@@ -109,15 +109,15 @@ Developer-mode auto-reloading of service instance upon source edit doesn't seem 
 
 # Specification:
 
-Please create a RESTful microservice that implements a card shuffling algorithm, as defined below.  DONE
+RESTful microservice that implements a card shuffling algorithm, as defined below.  DONE
 
-We’d like to see evidence of test-driven development with unit tests. IN PROCESSand as usual the tests are coming after the initial product, so I didn't design the tests first then create the product.  But this will give me some time to think about how one might go about this and push back and/or create the specifications in the test before I proceed with the solution programming. Need to study Cucumber possibly. For now using Spring and junit. 
+Evidence of test-driven development with unit tests. IN PROCESS and as usual the tests are coming after the initial product, so I didn't design the tests first then create the product.  But this will give me some time to think about how one might go about this and push back and/or create the specifications in the test before I proceed with the solution programming.  
 
-We’d prefer you use Gradle for the build, and Jetty to host, but these aren't requirements.  DONE
+Use Gradle for the build, and Jetty to host.  DONE
 
-Use best practices of interfaces and generics for abstraction, preferably implementing a strategy pattern for deploy-time dependency injection of a shuffling algorithm. IN PROCESS 
+Use best practices of interfaces and generics for abstraction, preferably implementing a strategy pattern for deploy-time dependency injection of a shuffling algorithm. PARTIAL Generics and abstraction done, working on deploy-time dependency that does not use reflection.
 
-Please document your decision making process with comments in the code, especially with regards to any scope reduction. DONE See above and below.
+Document decision making process with comments in the code, especially with regards to any scope reduction. DONE See above and below.
  
 Requirements:
 
