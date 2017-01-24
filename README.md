@@ -115,7 +115,7 @@ Evidence of test-driven development with unit tests. IN PROCESS and as usual the
 
 Use Gradle for the build, and Jetty to host.  DONE
 
-Use best practices of interfaces and generics for abstraction, preferably implementing a strategy pattern for deploy-time dependency injection of a shuffling algorithm. PARTIAL Generics and abstraction done, working on deploy-time dependency that does not use reflection.
+Use best practices of interfaces and generics for abstraction, preferably implementing a strategy pattern for deploy-time dependency injection of a shuffling algorithm. PARTIAL Generics and abstraction DONE, working on deploy-time dependency that does not use reflection.  Considering use of Spring @Configurable and AspectJ AnnotationBeanConfigurerAspect.
 
 Document decision making process with comments in the code, especially with regards to any scope reduction. DONE See above and below.
  
