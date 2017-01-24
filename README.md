@@ -72,6 +72,8 @@ curl -X DELETE localhost:8080/decks/deck2 | JSON_pp
 
 If you have Issues with this project, please create an Issue on GitHub and I will work to resolve.
 
+This code stores the decks globally, which means every caller sees all decks.  If the design specified session-local storage, traditionally I might stick the decks in the httpsession object referenced by the JSESSIONID.  If the design specified database storage, it would also need to specifiy scope such as session, user, global, etc. 
+
 Shuffling only occurs for 1 iteration.  As you can visualize the doHandShuffle creates some interesting scenarios.  To shuffle more than once, just issue the command again, you know, like a dealer might do in front of you.  If you want a parameter to specify number of iterations, please create an Issue on GitHub so I know you are alive and kicking and waiting for this feature.
 
 Refactor to support Strategy Pattern with Generics.  PARTIAL
