@@ -30,5 +30,56 @@ public class NikeDeckControllerTest {
 ;
 
     }
+
+    public void putDecks() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.put("/decks/deck1").accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+               // .andExpect(content().string(equalTo("Greetings from Spring Boot!")))
+;
+        mvc.perform(MockMvcRequestBuilders.put("/decks/deck2").accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+               // .andExpect(content().string(equalTo("Greetings from Spring Boot!")))
+;
+    }
+
+    public void shuffleDecks() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.post("/decks/deck1").accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+               // .andExpect(content().string(equalTo("Greetings from Spring Boot!")))
+;
+        mvc.perform(MockMvcRequestBuilders.post("/decks/deck2").accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+               // .andExpect(content().string(equalTo("Greetings from Spring Boot!")))
+;  
+     }
+
+     public void listDecks() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.get("/decks").accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+               // .andExpect(content().string(equalTo("Greetings from Spring Boot!")))
+
+;       mvc.perform(MockMvcRequestBuilders.get("/decks/deck1").accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+               // .andExpect(content().string(equalTo("Greetings from Spring Boot!")))
+;
+        mvc.perform(MockMvcRequestBuilders.get("/decks/deck2").accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+               // .andExpect(content().string(equalTo("Greetings from Spring Boot!")))
+;
+    }
+
+    public void deleteDecks() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.delete("/decks/deck1").accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+               // .andExpect(content().string(equalTo("Greetings from Spring Boot!")))
+;
+        mvc.perform(MockMvcRequestBuilders.delete("/decks/deck2").accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+               // .andExpect(content().string(equalTo("Greetings from Spring Boot!")))
+;  
+
+     }
+
+
 }
 
